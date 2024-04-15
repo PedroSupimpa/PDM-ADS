@@ -5,14 +5,15 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 12, 63, 230)),
+        colorScheme: ColorScheme.fromSwatch()
+            .copyWith(secondary: const Color(0xFF0C3FE6)),
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Todo List App'),
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -62,7 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
             child: TextField(
               controller: _controller,
               decoration: InputDecoration(
-                labelText: 'Add a new task',
+                labelText: 'Add new task',
                 suffixIcon: IconButton(
                   icon: const Icon(Icons.add),
                   onPressed: _addTask,
