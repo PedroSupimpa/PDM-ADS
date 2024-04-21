@@ -1,98 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:to_do/model/task.dart';
+import 'package:to_do/provider/task_provider.dart';
+import 'package:to_do/routes.dart';
+import 'package:to_do/view/add_task/add_task.dart';
+import 'package:to_do/view/task_list/task_list.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const MainApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class MainApp extends StatefulWidget {
+  const MainApp({super.key});
+
+  @override
+  State<MainApp> createState() => _MainAppState();
+}
+
+class _MainAppState extends State<MainApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSwatch()
-            .copyWith(secondary: const Color(0xFF0C3FE6)),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Todo List App'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class Task {
-  final String title;
-
-  Task(this.title);
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  final List<Task> _tasks = [];
-  final TextEditingController _controller = TextEditingController();
-
-  void _addTask() {
-    final String text = _controller.text;
-    if (text.isNotEmpty) {
-      setState(() {
-        _tasks.add(Task(text));
-        _controller.clear();
-      });
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: TextField(
-              controller: _controller,
-              decoration: InputDecoration(
-                labelText: 'Add new task',
-                suffixIcon: IconButton(
-                  icon: const Icon(Icons.add),
-                  onPressed: _addTask,
-                ),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<TaskProvider>(create: (context) => TaskProvider())
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        initialRoute: AppRoutes.home,
+        routes: {
+          AppRoutes.home: (context) => TaskListPage(
+                
               ),
-              onSubmitted: (_) => _addTask(),
-            ),
-          ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: _tasks.length,
-              itemBuilder: (context, index) {
-                final task = _tasks[index];
-                return Dismissible(
-                  key: Key(task.title),
-                  onDismissed: (_) {
-                    setState(() {
-                      _tasks.removeAt(index);
-                    });
-                  },
-                  background: Container(color: Colors.red),
-                  child: ListTile(
-                    title: Text(task.title),
-                  ),
-                );
-              },
-            ),
-          ),
-        ],
+          AppRoutes.add: (context) => AddTaskPage(
+                
+              )
+        },
       ),
     );
   }
