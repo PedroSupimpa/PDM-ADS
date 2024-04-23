@@ -4,7 +4,6 @@ import 'package:flutter_application_1/model/task.dart';
 class TaskProvider with ChangeNotifier {
   List<Task> _tasks = [];
 
-  // ignore: unnecessary_getters_setters
   List<Task> get tasks => _tasks;
 
   set tasks(List<Task> value) {

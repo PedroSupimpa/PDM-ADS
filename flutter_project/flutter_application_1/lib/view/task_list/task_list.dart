@@ -5,7 +5,6 @@ import 'package:flutter_application_1/view/task_list/task_card.dart';
 import 'package:provider/provider.dart';
 
 class TaskListPage extends StatelessWidget {
-  // ignore: prefer_const_constructors_in_immutables
   TaskListPage({super.key});
 
   @override

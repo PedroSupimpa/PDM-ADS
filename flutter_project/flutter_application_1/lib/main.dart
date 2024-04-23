@@ -29,7 +29,7 @@ class _MainAppState extends State<MainApp> {
         initialRoute: AppRoutes.home,
         routes: {
           AppRoutes.home: (context) => TaskListPage(),
-          AppRoutes.add: (context) => const AddTaskPage()
+          AppRoutes.add: (context) => AddTaskPage()
         },
       ),
     );
