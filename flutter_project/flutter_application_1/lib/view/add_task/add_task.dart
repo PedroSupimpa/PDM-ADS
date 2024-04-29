@@ -96,13 +96,38 @@ class _AddTaskPageState extends State<AddTaskPage> {
                     },
                   ),
                 ),
+              
                 const SizedBox(
+                  height: 20,
+                ),
+                DropdownMenu<TaskStatus>(
+                  width: 200,
+                  label: const Text("Status"),
+                  onSelected: (value) {
+                    setState(() {
+                      selectedStatus = value;
+                    });
+                  },
+                  dropdownMenuEntries: TaskStatus.values
+                      .map(
+                        (e) => DropdownMenuEntry<TaskStatus>(
+                          value: e,
+                          label: e.name,
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStatePropertyAll(e.color),
+                            overlayColor: MaterialStatePropertyAll(e.color),
+                          ),
+                        ),
+                      )
+                      .toList(),
+                ),
+                  const SizedBox(
                   height: 20,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    TextButton(
+                    ElevatedButton(
                       onPressed: () {
                         showDatePicker(
                           context: context,
@@ -124,29 +149,6 @@ class _AddTaskPageState extends State<AddTaskPage> {
                   ],
                 ),
                 const SizedBox(
-                  height: 20,
-                ),
-                DropdownMenu<TaskStatus>(
-                  label: const Text("Status"),
-                  onSelected: (value) {
-                    setState(() {
-                      selectedStatus = value;
-                    });
-                  },
-                  dropdownMenuEntries: TaskStatus.values
-                      .map(
-                        (e) => DropdownMenuEntry<TaskStatus>(
-                          value: e,
-                          label: e.name,
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStatePropertyAll(e.color),
-                            overlayColor: MaterialStatePropertyAll(e.color),
-                          ),
-                        ),
-                      )
-                      .toList(),
-                ),
-                const SizedBox(
                   height: 10,
                 ),
                 ElevatedButton(
@@ -161,3 +163,6 @@ class _AddTaskPageState extends State<AddTaskPage> {
     );
   }
 }
+
+
+

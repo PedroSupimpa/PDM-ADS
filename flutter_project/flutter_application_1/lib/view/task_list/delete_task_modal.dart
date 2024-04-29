@@ -19,7 +19,8 @@ class DeleteTaskModal extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Deseja realmente excluir a tarefa?',
+                  
+"Are you sure you want to delete the task?",
                   style: Theme.of(context).textTheme.bodyLarge,
                 ),
               ],
@@ -31,13 +32,13 @@ class DeleteTaskModal extends StatelessWidget {
                   onPressed: () {
                     Navigator.of(context).pop(true);
                   },
-                  child: const Text('SIM'),
+                  child: const Text('Yes'),
                 ),
                 TextButton(
                   onPressed: () {
                     Navigator.of(context).pop(false);
                   },
-                  child: const Text('NÃO'),
+                  child: const Text('No'),
                 )
               ],
             )

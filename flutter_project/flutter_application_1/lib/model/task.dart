@@ -21,12 +21,12 @@ enum TaskStatus {
 
   Color get color {
     switch (name) {
-      case 'toDo':
-        return Colors.red;
+      case 'to do':
+        return Color.fromARGB(255, 235, 80, 69);
       case 'doing':
-        return Colors.yellow;
+        return const Color.fromARGB(255, 238, 220, 59);
       case 'done':
-        return Colors.green;
+        return const Color.fromARGB(255, 107, 221, 111);
       default:
         return Colors.black54;
     }

@@ -17,7 +17,7 @@ class TaskListPage extends StatelessWidget {
         ),
         body: provider.tasks.isEmpty
             ? const Center(
-                child: Text('No tasks here... Create a task'),
+                child: Text('No tasks... Create a new one!'),
               )
             : ListView.builder(
                 itemCount: provider.tasks.length,
